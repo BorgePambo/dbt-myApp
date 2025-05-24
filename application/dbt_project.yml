@@ -1,0 +1,44 @@
+
+name: 'application'
+version: '1.0.0'
+
+# This setting configures which "profile" dbt uses for this project.
+profile: 'application'
+
+
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+clean-targets:         # directories to be removed by `dbt clean`
+  - "target"
+  - "dbt_packages"
+
+
+
+models:
+  application:
+    staging:
+      materialized: table
+      schema: STAGE
+      tags: ['staging']
+
+    intermediate:
+      materialized: ephemeral
+      schema: INTER
+      tags: ['intermediate']
+
+    marts:
+      materialized: table
+      schema: MARTS
+      tags: ['marts']
+
+
+seeds:
+  application:
+    schema: raw
+    tags: ['seeds']
+    separator: ','
