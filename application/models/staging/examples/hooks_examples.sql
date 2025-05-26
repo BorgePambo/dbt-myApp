@@ -1,0 +1,24 @@
+-- {{
+--     config(
+--         pre_hook = [
+--             "CREATE OR REPLACE TABLE temp_cliente AS SELECT * from clientes LIMIT 100",
+--         ],
+        
+--         post_hook = [
+--             "DROP TABLE IF EXISTS temp_cliente",
+--         ]
+--     )
+-- }}
+-- SELECT *
+-- FROM temp_cliente
+
+-- ----
+-- {{
+--     config(
+--         materialized = 'table',
+--         post_hook = [
+--             "INSERT INTO Log_execucao (tabela, data_execucao, status) VALUES ('clientes', CURRENT_TIMESTAMP, 'OK')",
+--         ]
+--     )
+-- }}
+-- SELECT * clientes

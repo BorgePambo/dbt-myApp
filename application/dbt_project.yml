@@ -18,6 +18,11 @@ clean-targets:         # directories to be removed by `dbt clean`
   - "dbt_packages"
 
 
+#---declare variables---
+vars:
+  ambiente: "desenvolvimento"
+  data_minima: "2023-10-01"
+  schema_nome: "desenvolvimento"
 
 models:
   application:
